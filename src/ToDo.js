@@ -1,39 +1,36 @@
 const contentBox = document.getElementById('content')
-let note = JSON.parse(localStorage.getItem("todos")) || [];
+
+let projects = JSON.parse(localStorage.getItem("projects")) || {Default: []};
 
 export default class ToDo {
 
-
     createNote(title, description, date, priority) {
-
-        note.push({"title": title, "description": description, "date": date, "priority": priority});
-        localStorage.setItem("todos", JSON.stringify(note));
+        projects['Default'].push({"title": title, "description": description, "date": date, "priority": priority});
+        localStorage.setItem("projects", JSON.stringify(projects));
         this.showNotes();
-
-
     }
 
     deleteNote(index) {
-        let noteArray = JSON.parse(localStorage.getItem("todos"));
-        noteArray.splice(index, 1);
-        localStorage.setItem("todos", JSON.stringify(noteArray));
-        note = noteArray;
+        let noteArray = JSON.parse(localStorage.getItem("projects"));
+        noteArray['Default'].splice(index, 1);
+        localStorage.setItem("projects", JSON.stringify(noteArray));
+        projects = noteArray;
         this.showNotes();
     }
 
     showNotes() {
         contentBox.innerHTML = '';
-        const localData = JSON.parse(localStorage.getItem("todos"));
-        for (let i = 0; i < localData.length; i++) {
+        const localData = JSON.parse(localStorage.getItem("projects")) || {Default: []};
+        for (let i = 0; i < localData['Default'].length; i++) {
             const noteBox = document.createElement('div');
             const noteTitle = document.createElement('h2');
-            noteTitle.innerHTML = localData[i].title;
+            noteTitle.innerHTML = localData['Default'][i].title;
             const noteDescription = document.createElement('p');
-            noteDescription.innerHTML = localData[i].description;
+            noteDescription.innerHTML = localData['Default'][i].description;
             const noteDate = document.createElement('p');
-            noteDate.innerHTML = localData[i].date;
+            noteDate.innerHTML = localData['Default'][i].date;
             const notePriority = document.createElement('p');
-            notePriority.innerHTML = localData[i].priority;
+            notePriority.innerHTML = localData['Default'][i].priority;
             const deleteNoteBtn = document.createElement('button');
             deleteNoteBtn.innerText = 'delete';
 
