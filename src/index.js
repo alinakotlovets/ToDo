@@ -1,5 +1,6 @@
 import ToDo from "./ToDo";
-import Project from "./projects";
+import Project, {projects} from "./projects";
+
 const title = document.getElementById('title');
 const description = document.getElementById('description');
 const date = document.getElementById('dueDate');
@@ -8,8 +9,7 @@ const form = document.getElementById('form');
 const projectForm = document.getElementById('project-form');
 const projectTitle = document.getElementById("project-title");
 let editingProject = null;
-
-
+let editNote = null;
 
 
 const project = new Project();
@@ -18,7 +18,7 @@ const toDo = new ToDo();
 projectForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    if(editingProject){
+    if (editingProject) {
         project.editProject(editingProject, projectTitle.value);
         editingProject = null;
         project.showAllProjects();
@@ -33,9 +33,16 @@ projectForm.addEventListener('submit', (event) => {
 })
 
 
-form.addEventListener('submit', function(event){
+form.addEventListener('submit', function (event) {
+    if (editNote !== null) {
+        toDo.editNote(editNote, title.value, description.value, date.value, priority.value);
+        editNote = null;
+        toDo.showNotes();
+
+    } else {
+        toDo.createNote(title.value, description.value, date.value, priority.value);
+    }
     event.preventDefault();
-    toDo.createNote(title.value, description.value, date.value, priority.value);
     title.value = '';
     description.value = '';
     date.value = '';
@@ -43,7 +50,6 @@ form.addEventListener('submit', function(event){
 
 
 })
-
 
 
 project.showAllProjects();
@@ -67,4 +73,22 @@ projectBox.addEventListener('click', (e) => {
 });
 
 
+const noteBox = document.querySelector(".note-box")
+noteBox.addEventListener('click', (e) => {
+    const target = e.target;
 
+    if (target.classList.contains('delete-note-btn')) {
+        toDo.deleteNote(target.dataset.noteId);
+    } else if (target.classList.contains('edit-note-btn')) {
+        editNote = target.dataset.noteId;
+        const note = projects[project.getCurrentProject()][editNote];
+        console.log('current project:', project.getCurrentProject());
+        console.log('projects:', projects);
+        console.log('editNote (index):', editNote);
+        console.log('notes array:', projects[project.getCurrentProject()]);
+        title.value = note.title;
+        description.value = note.description;
+        date.value = note.date;
+        priority.value = note.priority;
+    }
+});

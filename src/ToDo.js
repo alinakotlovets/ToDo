@@ -1,5 +1,6 @@
 const contentBox = document.getElementById('content');
 const noteBox = document.createElement('ul');
+noteBox.classList.add('note-box');
 import Project from "./projects";
 import {projects} from "./projects";
 
@@ -20,6 +21,15 @@ export default class ToDo {
         this.showNotes();
     }
 
+    editNote(index, title, description, date, priority) {
+        let currentNote = projects[project.getCurrentProject()][index];
+        currentNote.title = title;
+        currentNote.description = description || null;
+        currentNote.date = date || null;
+        currentNote.priority = priority;
+        localStorage.setItem("projects", JSON.stringify(projects));
+    }
+
     showNotes() {
         noteBox.innerHTML = '';
         const localData = JSON.parse(localStorage.getItem("projects")) || {Default: []};
@@ -36,15 +46,15 @@ export default class ToDo {
             notePriority.innerHTML = localData[project.getCurrentProject()][i].priority;
             const deleteNoteBtn = document.createElement('button');
             deleteNoteBtn.innerText = 'delete';
-
-            noteItem.append(noteTitle, noteDescription, noteDate, notePriority, deleteNoteBtn);
+            deleteNoteBtn.classList.add('delete-note-btn');
+            deleteNoteBtn.dataset.noteId = i;
+            const editNoteBtn = document.createElement('button');
+            editNoteBtn.innerText = 'edit';
+            editNoteBtn.classList.add('edit-note-btn');
+            editNoteBtn.dataset.noteId = i;
+            noteItem.append(noteTitle, noteDescription, noteDate, notePriority, deleteNoteBtn, editNoteBtn);
             noteBox.append(noteItem);
             contentBox.appendChild(noteBox);
-
-
-            deleteNoteBtn.addEventListener('click', () => {
-                this.deleteNote(i);
-            })
         }
     }
 }

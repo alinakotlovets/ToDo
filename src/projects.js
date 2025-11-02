@@ -20,7 +20,7 @@ export  default  class Project {
         localStorage.setItem("projects", JSON.stringify(projects));
     }
 
-        getCurrentProject() {
+    getCurrentProject() {
         return currentProject;
     }
 
