@@ -1,0 +1,104 @@
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+}
+h1, h2 ,p{
+    color: #303633;
+    margin: 0;
+}
+
+button{
+    cursor: pointer;
+
+}
+
+img{
+    display: block;
+}
+
+li{
+    list-style: none;
+}
+.content-box{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    position: relative;
+    z-index: 3;
+
+}
+
+.project-form-bg{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    z-index: 0;
+    left: 0;
+    top: 0;
+
+}
+
+.project-form-box{
+    position: fixed;
+    z-index: 1;
+    background-color: white;
+    width: 400px;
+    border-radius: 10px;
+    height: 175px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-form{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+.project-btn-box{
+    display: flex;
+    margin-top: 20px;
+    gap: 10px;
+}
+.form-input{
+    padding: 0.6rem;
+}
+
+.submit-btn{
+    background-color: #8BE1AB;
+    color: #303633;
+}
+.delete-btn{
+    background-color: #c1121f;
+    color: #fefae0;
+}
+
+.delete-btn:hover,
+.delete-btn:focus{
+    background-color: #c1123a;
+}
+
+.submit-btn,
+.delete-btn{
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    font-size: 14px;
+    width: 100px;
+    height: 35px;
+}
+.submit-btn:hover,
+.submit-btn:focus{
+    background-color: #8BE8CB;
+}
+
+.form-label{
+    margin-bottom: 10px;
+    color: #303633;
+    font-weight: bold;
+}
