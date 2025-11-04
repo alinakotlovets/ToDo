@@ -368,3 +368,58 @@ li{
     margin-left: 40px;
     gap: 10px;
 }
+
+@media screen and (max-width: 1199.9px){
+    .note-description{
+        width: 350px;
+    }
+    .project-list-item-btn-box{
+        display: flex;
+    }
+    .delete-project-btn,
+    .edit-project-btn{
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .edit-project-btn:hover,
+    .edit-project-btn:focus,
+    .edit-note-btn:hover,
+    .edit-note-btn:focus{
+        padding: 0;
+        background-color: transparent;
+        border-radius: 5px;
+    }
+    .project-list-item:hover .project-list-item-btn-box{
+        gap: 0;
+    }
+
+}
+
+@media screen and (max-width: 767.9px){
+
+    .note-description{
+        width: 200px;
+    }
+
+
+    .project-list-item-btn-box{
+        display: flex;
+    }
+    .project-list-item:hover .project-list-item-btn-box{
+        gap: 0;
+    }
+
+    .delete-project-btn,
+    .edit-project-btn{
+        background-color:transparent;
+    }
+
+    .edit-project-btn:hover,
+    .edit-project-btn:focus,
+    .edit-note-btn:hover,
+    .edit-note-btn:focus{
+        background-color: transparent;
+        border-radius: 5px;
+    }
+}

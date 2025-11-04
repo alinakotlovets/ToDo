@@ -120,14 +120,6 @@ projectBox.addEventListener('click', (e) => {
             item.classList.remove('active');
         });
         currentItem.classList.add('active');
-        // const allButtons = document.querySelectorAll('.project-btn');
-        // allButtons.forEach(btn => {
-        //     if (btn.innerText === project.getCurrentProject()) {
-        //         btn.classList.add('active');
-        //     } else {
-        //         btn.classList.remove('active');
-        //     }
-        // })
         toDo.showNotes();
         projectTitle.innerText = project.getCurrentProject();
     }
