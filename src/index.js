@@ -99,6 +99,7 @@ project.showAllProjects();
 toDo.showNotes();
 
 const projectBox = document.querySelector(".project-list");
+const leftBox = document.querySelector(".left-box");
 projectBox.addEventListener('click', (e) => {
     const target = e.target;
     if (target.classList.contains('edit-project-btn')) {
@@ -122,6 +123,9 @@ projectBox.addEventListener('click', (e) => {
         currentItem.classList.add('active');
         toDo.showNotes();
         projectTitle.innerText = project.getCurrentProject();
+        if (window.innerWidth <= 768){
+            leftBox.style.display = "none";
+        }
     }
 });
 
@@ -146,3 +150,10 @@ noteBox.addEventListener('click', (e) => {
         priority.value = note.priority;
     }
 });
+
+
+const mobileBtn = document.querySelector(".mobile-btn");
+mobileBtn.addEventListener ("click", e => {
+    e.preventDefault();
+    leftBox.style.display = "flex";
+})

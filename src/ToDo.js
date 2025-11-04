@@ -3,6 +3,9 @@ import {projects} from "./projects";
 
 const contentBox = document.getElementById('content');
 const noteBox = document.createElement('ul');
+const mobileBtn = document.createElement('button');
+mobileBtn.classList.add('mobile-btn');
+mobileBtn.innerHTML = 'Projects';
 noteBox.classList.add('note-box');
 const rightBox = document.createElement('div');
 rightBox.className = 'right-box';
@@ -18,7 +21,7 @@ const projectTitle = document.createElement('h1');
 projectTitle.id = 'title-of-projects';
 const noteHeadBox = document.createElement('div');
 noteHeadBox.classList.add('note-head-box');
-noteHeadBox.append(projectTitle, addToDoBtn);
+noteHeadBox.append(projectTitle, addToDoBtn, mobileBtn);
 projectTitle.innerText = project.getCurrentProject();
 rightBox.append(noteHeadBox, noteBox);
 contentBox.append(rightBox);

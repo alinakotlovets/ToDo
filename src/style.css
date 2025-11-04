@@ -20,6 +20,7 @@ h3{
 
 button{
     cursor: pointer;
+    color: #303633;
 
 }
 
@@ -187,7 +188,8 @@ li{
     height: 35px;
 }
 
-.add-to-do-btn{
+.add-to-do-btn,
+.mobile-btn{
     border-radius: 5px;
     border: none;
     font-weight: bold;
@@ -369,10 +371,23 @@ li{
     gap: 10px;
 }
 
+.mobile-btn{
+    display: none;
+}
+
 @media screen and (max-width: 1199.9px){
     .note-description{
-        width: 350px;
+        width: 230px;
     }
+
+    .note-btn-box {
+        margin-left: 20px;
+    }
+
+    .note-date-box{
+        margin-left: 30px;
+    }
+
     .project-list-item-btn-box{
         display: flex;
     }
@@ -394,13 +409,29 @@ li{
         gap: 0;
     }
 
+
 }
 
 @media screen and (max-width: 767.9px){
 
-    .note-description{
-        width: 200px;
+
+
+    .right-box{
+        display: flex;
+        padding-left: 10px;
+        flex-direction: column;
+        width: 100%;
+
     }
+
+    .note-description{
+        width: 130px;
+    }
+
+    .note-list-item{
+        padding: 5px;
+    }
+
 
 
     .project-list-item-btn-box{
@@ -422,4 +453,75 @@ li{
         background-color: transparent;
         border-radius: 5px;
     }
+    .left-box{
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+    }
+
+    .project-head-box{
+        padding: 10px;
+    }
+    .project-list{
+        width: 90%;
+        padding: 0 10px 0 10px;
+    }
+    h1{
+        font-size: 20px;
+    }
+    h2{
+        font-size: 12px;
+    }
+    h3{
+        font-size: 10px;
+    }
+    p{
+        font-size: 7px;
+    }
+
+    .mobile-btn{
+        display: block;
+        color: #212529;
+        width: 100px;
+        height: 30px;
+        background-color: #d4d4d4;
+    }
+
+    .note-btn-box {
+        gap: 5px;
+        margin-left: 5px;
+    }
+    .note-date-box {
+        margin-left: 10px;
+    }
+
+    button{
+        font-size: 10px;
+    }
+
+    .edit-note-btn,
+    .delete-note-btn{
+        padding: 0;
+        width: 40px;
+    }
+
+
+    .add-to-do-btn,
+    .mobile-btn{
+        font-size: 10px;
+        width: 70px;
+        height: 35px;
+    }
+
+    .to-do-form-box{
+        width: 85%;
+    }
+    .project-form-box {
+        width: 85%;
+    }
+
 }
