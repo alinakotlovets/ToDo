@@ -513,7 +513,7 @@ li{
     .add-to-do-btn,
     .mobile-btn{
         font-size: 10px;
-        width: 70px;
+        width: 80px;
         height: 35px;
     }
 
@@ -524,4 +524,22 @@ li{
         width: 85%;
     }
 
+
+}
+
+@media (hover: none) and (pointer: coarse) {
+
+    .note-list-item:hover,
+    .note-list-item:focus {
+        background-color: transparent !important;
+    }
+
+    .note-list-item {
+        background-color: #fff;
+    }
+
+
+    .note-list-item.done {
+        background-color: #e5e5e5 !important;
+    }
 }

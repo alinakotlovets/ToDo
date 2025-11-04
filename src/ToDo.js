@@ -185,6 +185,9 @@ export default class ToDo {
                     noteCheckbox.checked = true;
                     noteItem.classList.add('done');
                     noteTitle.classList.add('done-title');
+                } else if (notesArray[i].isDone === false) {
+                    noteItem.classList.remove('done');
+                    noteTitle.classList.remove('done-title');
                 }
                 noteCheckbox.addEventListener('change', () => {
                     if (noteCheckbox.checked) {
