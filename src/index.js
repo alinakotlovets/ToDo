@@ -99,7 +99,6 @@ project.showAllProjects();
 toDo.showNotes();
 
 const projectBox = document.querySelector(".project-list");
-// const projectBtn = document.querySelector('.project-btn');
 projectBox.addEventListener('click', (e) => {
     const target = e.target;
     if (target.classList.contains('edit-project-btn')) {
@@ -115,14 +114,20 @@ projectBox.addEventListener('click', (e) => {
         toDo.showNotes();
     } else if (target.classList.contains('project-btn')) {
         project.changeProject(target.innerText);
-        const allButtons = document.querySelectorAll('.project-btn');
-        allButtons.forEach(btn => {
-            if (btn.innerText === project.getCurrentProject()) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        })
+
+        const currentItem = target.closest('.project-list-item');
+        document.querySelectorAll('.project-list-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        currentItem.classList.add('active');
+        // const allButtons = document.querySelectorAll('.project-btn');
+        // allButtons.forEach(btn => {
+        //     if (btn.innerText === project.getCurrentProject()) {
+        //         btn.classList.add('active');
+        //     } else {
+        //         btn.classList.remove('active');
+        //     }
+        // })
         toDo.showNotes();
         projectTitle.innerText = project.getCurrentProject();
     }

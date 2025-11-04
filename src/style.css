@@ -13,6 +13,11 @@ h1, h2 ,p{
     margin: 0;
 }
 
+h3{
+    font-size: 14px;
+    margin: 0;
+}
+
 button{
     cursor: pointer;
 
@@ -90,12 +95,15 @@ li{
     background-color: #c1123a;
 }
 
-.add-project-btn{
+.add-project-btn,
+.add-to-do-btn{
     background-color: #669bbc;
 }
 
 .add-project-btn:hover,
-.add-project-btn:focus{
+.add-project-btn:focus,
+.add-to-do-btn:focus,
+.add-to-do-btn:hover{
     background-color: #669bff;
 }
 
@@ -152,7 +160,7 @@ li{
 }
 
 .left-box{
-    width: 320px;
+    width: 25%;
     display: flex;
     height: 100%;
     flex-direction: column;
@@ -179,12 +187,22 @@ li{
     height: 35px;
 }
 
+.add-to-do-btn{
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    font-size: 14px;
+    width: 100px;
+    height: 35px;
+}
+
 .project-list{
     display: flex;
     justify-content: start;
     padding: 0;
     margin-top: 20px;
     flex-direction: column;
+    gap: 5px;
 }
 
 .project-list-item{
@@ -194,6 +212,7 @@ li{
     align-items: center;
     justify-content: space-between;
     padding: 5px;
+    transition: background-color 1ms ease-in-out;
 }
 
 
@@ -202,7 +221,7 @@ li{
 }
 
 .project-btn{
-    background-color: #e5e5e5;
+    background: transparent;
     padding: 10px;
     height: 40px;
     width: 80%;
@@ -211,12 +230,141 @@ li{
     text-align: start;
 }
 
+.project-btn:hover,
+.project-btn:focus {
+    background-color: #c4c9f9;
+    border-radius: 5px;
+}
+
 
 .active{
     background-color: #c4c9f9;
     border-radius: 5px ;
 }
 
-.project-list-item-btn-box{
+
+.project-list-item-btn-box {
+    display: none;
+}
+
+.project-list-item:hover .project-list-item-btn-box {
     display: flex;
+    gap: 10px;
+    background-color: #c4c9f9;
+}
+.project-list-item:hover {
+    background-color: #c4c9f9;
+    border-radius: 5px ;
+}
+
+.delete-project-btn,
+.edit-project-btn,
+.delete-note-btn,
+.edit-note-btn{
+    border-radius: 5px;
+    background-color: #c4c9f9;
+    padding: 5px;
+    width: 50px;
+    height: 30px;
+    border: none;
+    text-align: center;
+    outline: none;
+    transition: background-color 1ms ease-in-out;
+}
+
+.delete-note-btn,
+.edit-note-btn{
+    background: transparent;
+}
+
+.delete-project-btn:hover,
+.delete-project-btn:focus,
+.delete-note-btn:hover,
+.delete-note-btn:focus{
+    color: white;
+    background-color: #c1123a;
+    border-radius: 5px;
+}
+.edit-project-btn:hover,
+.edit-project-btn:focus,
+.edit-note-btn:hover,
+.edit-note-btn:focus{
+    background-color: #669bbc;
+    border-radius: 5px;
+}
+
+.right-box{
+    height: 100%;
+    padding-left: 20px;
+    width: 75%;
+}
+
+.note-box{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.note-title{
+    padding-bottom: 9px;
+}
+.note-head-box{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 40px;
+    padding: 20px 10px 20px 0;
+}
+.note-list-item{
+    display: flex;
+    align-items: center;
+    min-height: 80px;
+    outline: 1px solid #4a4e69;
+    border-radius: 5px;
+    padding: 10px;
+    width: 95%;
+    cursor: pointer;
+}
+
+.note-list-item:hover,
+.note-list-item:focus{
+    background-color: #e5e5e5;
+}
+
+.note-text-box{
+    margin-left: 2%;
+    display: flex;
+    flex-direction: column;
+}
+
+.note-date-box{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: 20px;
+    width: 90px;
+}
+
+.done-title{
+    text-decoration: line-through;
+    color: dimgrey;
+}
+
+.done{
+    color: dimgrey;
+    background-color: #e5e5e5;
+}
+
+
+.note-description{
+    width: 550px;
+}
+
+
+.note-btn-box{
+    display: flex;
+    margin-left: 40px;
+    gap: 10px;
 }

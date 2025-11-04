@@ -3,8 +3,11 @@ import {projects} from "./projects";
 
 const contentBox = document.getElementById('content');
 const noteBox = document.createElement('ul');
+noteBox.classList.add('note-box');
 const rightBox = document.createElement('div');
+rightBox.className = 'right-box';
 const addToDoBtn = document.createElement('button');
+addToDoBtn.classList.add('add-to-do-btn');
 addToDoBtn.innerText = 'Add To Do';
 addToDoBtn.id = 'add-to-do';
 noteBox.classList.add('note-box');
@@ -13,8 +16,11 @@ noteBox.classList.add('note-box');
 const project = new Project();
 const projectTitle = document.createElement('h1');
 projectTitle.id = 'title-of-projects';
+const noteHeadBox = document.createElement('div');
+noteHeadBox.classList.add('note-head-box');
+noteHeadBox.append(projectTitle, addToDoBtn);
 projectTitle.innerText = project.getCurrentProject();
-rightBox.append(projectTitle, addToDoBtn, noteBox);
+rightBox.append(noteHeadBox, noteBox);
 contentBox.append(rightBox);
 
 
@@ -24,7 +30,7 @@ export default class ToDo {
         let projectTitle = project.getCurrentProject();
         const idx = projects.findIndex(p => p.title === projectTitle);
         if (idx !== -1) {
-            projects[idx].notes.push({"title": title, "description": description, "date": date, "priority": priority});
+            projects[idx].notes.push({"title": title, "description": description, "date": date, "priority": priority, "isDone" : false});
             localStorage.setItem("projects", JSON.stringify(projects));
             this.showNotes();
         }
@@ -117,6 +123,7 @@ export default class ToDo {
             toDoFormBox.style.display = 'none';
             toDoBg.style.display = 'none';
         })
+
         toDoBtnBox.append(addButton, cancelButton);
         form.append(title, titleInput, description, descriptionInput, date, dateInput, priority, prioriSelect, toDoBtnBox);
         toDoFormBox.appendChild(form);
@@ -133,23 +140,69 @@ export default class ToDo {
             const notesArray = projects[idx].notes;
             for (let i = 0; i < notesArray.length; i++) {
                 const noteItem = document.createElement('li');
+                const noteCheckbox = document.createElement('input');
+                noteCheckbox.type = 'checkbox';
+                noteCheckbox.id = 'noteCheckbox';
+                noteCheckbox.classList.add('note-checkbox');
+                noteItem.classList.add('note-list-item');
                 const noteTitle = document.createElement('h2');
+                noteTitle.classList.add('note-title');
                 noteTitle.innerHTML = notesArray[i].title;
+                const noteTextBox = document.createElement('div');
+                noteTextBox.classList.add('note-text-box');
+                const noteDateBox = document.createElement('div');
+                noteDateBox.classList.add('note-date-box');
                 const noteDescription = document.createElement('p');
                 noteDescription.innerHTML = notesArray[i].description;
+                noteDescription.classList.add('note-description');
                 const noteDate = document.createElement('p');
                 noteDate.innerHTML = notesArray[i].date;
                 const notePriority = document.createElement('p');
                 notePriority.innerHTML = notesArray[i].priority;
+                const noteBtnBox = document.createElement('div');
+                noteBtnBox.classList.add('note-btn-box');
                 const deleteNoteBtn = document.createElement('button');
-                deleteNoteBtn.innerText = 'delete';
+                deleteNoteBtn.innerText = 'Delete';
                 deleteNoteBtn.classList.add('delete-note-btn');
                 deleteNoteBtn.dataset.noteId = i;
                 const editNoteBtn = document.createElement('button');
-                editNoteBtn.innerText = 'edit';
+                editNoteBtn.innerText = 'Edit';
                 editNoteBtn.classList.add('edit-note-btn');
                 editNoteBtn.dataset.noteId = i;
-                noteItem.append(noteTitle, noteDescription, noteDate, notePriority, deleteNoteBtn, editNoteBtn);
+
+                function isData(value, title, item, fatherBox){
+                    if(value !== null && value !== undefined && value !== '') {
+                        const h2 = document.createElement('h3');
+                        h2.classList.add(`note-label`);
+                        h2.innerHTML = title;
+                        fatherBox.append(h2, item);
+                    } else {fatherBox.appendChild(item);}
+                }
+                if (notesArray[i].isDone) {
+                    noteCheckbox.checked = true;
+                    noteItem.classList.add('done');
+                    noteTitle.classList.add('done-title');
+                }
+                noteCheckbox.addEventListener('change', () => {
+                    if (noteCheckbox.checked) {
+                        noteItem.classList.add('done');
+                        noteTitle.classList.add('done-title');
+                        notesArray[i].isDone = true;
+                    } else {
+                        noteItem.classList.remove('done');
+                        noteTitle.classList.remove('done-title');
+                        notesArray[i].isDone = false;
+                    }
+
+                    localStorage.setItem("projects", JSON.stringify(projects));
+                });
+
+                noteTextBox.appendChild(noteTitle);
+                isData(notesArray[i].description, 'Description:', noteDescription, noteTextBox);
+                isData(notesArray[i].date, 'Due date:', noteDate, noteDateBox);
+                isData(notesArray[i].priority, 'Priority:', notePriority, noteDateBox);
+                noteBtnBox.append(deleteNoteBtn, editNoteBtn);
+                noteItem.append(noteCheckbox,noteTextBox, noteDateBox, noteBtnBox);
                 noteBox.append(noteItem);
             }
         }

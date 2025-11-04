@@ -129,7 +129,7 @@ export  default  class Project {
                 projectBox.appendChild(projectItem);
 
             } else {
-                projectBtn.classList.add('active');
+                projectItem.classList.add('active');
                 projectItem.append(projectBtn);
                 projectBox.appendChild(projectItem);
             }
